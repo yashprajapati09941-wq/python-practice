@@ -1,19 +1,26 @@
-# Exception Handling in Python
+def withdraw(balance):
+    try:
+        amount = int(input("Enter amount to withdraw: "))
 
-try:
-    num1 = int(input("Enter first number: "))
-    num2 = int(input("Enter second number: "))
+        if amount <= 0:
+            raise ValueError("Amount must be greater than 0")
 
-    result = num1 / num2
+        if amount > balance:
+            raise ValueError("Insufficient balance")
 
-except ValueError:
-    print("Please enter numbers only.")
+        balance = balance - amount
 
-except ZeroDivisionError:
-    print("You cannot divide by zero.")
+    except ValueError as e:
+        print("Error:", e)
 
-else:
-    print("Result:", result)
+    else:
+        print("Withdrawal successful!")
+        print("Remaining balance:", balance)
 
-finally:
-    print("Program execution completed.")
+    finally:
+        print("Thank you for using ATM!")
+
+
+balance = 5000
+
+withdraw(balance)
